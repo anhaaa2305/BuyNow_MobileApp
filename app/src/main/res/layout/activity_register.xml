@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <ImageView
+        android:id="@+id/app_logo"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:src="@drawable/app_logo_cpl"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:contentDescription="@string/app_logo"
+        />
+
+    <EditText
+        android:id="@+id/register_username_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_logo"
+        android:background="@drawable/input_design"
+        android:padding="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:hint="@string/user_name"
+        android:inputType="text"
+        android:textSize="18sp"
+        android:textColorHint="@color/Coral"
+        android:textStyle="bold"
+        android:autofillHints="TODO" />
+
+    <EditText
+        android:id="@+id/register_address_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/register_username_input"
+        android:background="@drawable/input_design"
+        android:padding="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:hint="@string/address"
+        android:inputType="text"
+        android:textSize="18sp"
+        android:textColorHint="@color/Coral"
+        android:textStyle="bold"
+        android:autofillHints="TODO" />
+
+    <EditText
+        android:id="@+id/register_phone_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/register_address_input"
+        android:background="@drawable/input_design"
+        android:padding="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:hint="@string/phone_number"
+        android:inputType="phone"
+        android:textSize="18sp"
+        android:textColorHint="@color/Coral"
+        android:textStyle="bold"
+        android:autofillHints="TODO" />
+
+    <EditText
+        android:id="@+id/register_password_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/register_phone_input"
+        android:background="@drawable/input_design"
+        android:padding="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:textSize="18sp"
+        android:textColorHint="@color/Coral"
+        android:textStyle="bold"
+        android:autofillHints="TODO" />
+
+
+    <Button
+        android:id="@+id/register_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="15dp"
+        android:layout_below="@id/register_password_input"
+        android:layout_marginStart="15dp"
+        android:backgroundTint="@color/Coral"
+        android:padding="20dp"
+        android:textAllCaps="false"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        android:text="@string/create_account"
+        android:textColor="@color/white"
+        />
+    <TextView
+        android:id="@+id/admin_panel_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/i_m_an_admin"
+        android:textColor="@color/Coral"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_below="@id/register_btn"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentEnd="true"
+        />
+</RelativeLayout>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Buy Now v1</string>
+    <string name="app_logo">app_logo</string>
+    <string name="password">Password</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="login">Login</string>
+    <string name="i_m_an_admin">I\'m an Admin?</string>
+    <string name="find_discover_choose_and_buy_anything_online">Find, Discover, Choose and Buy anything online.</string>
+    <string name="create_account">Create account</string>
+    <string name="user_name">User Name</string>
+    <string name="address">Address</string>
+</resources>

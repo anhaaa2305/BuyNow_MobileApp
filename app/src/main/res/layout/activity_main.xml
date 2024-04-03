@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activities.Shared.MainActivity">
 
     <ImageView
         android:id="@+id/app_logo"
@@ -44,7 +44,7 @@
         android:textAllCaps="false"
         android:textSize="18sp"
         android:textStyle="bold|italic"
-        android:text="Already have an Account? Login"
+        android:text="@string/already_have_an_account_login"
         android:textColor="@color/white"
         />
     <Button
@@ -58,7 +58,7 @@
         android:layout_marginStart="15dp"
         android:textAllCaps="false"
         android:textSize="18sp"
-        android:text="Join Now"
+        android:text="@string/join_now"
         android:textStyle="bold"
         android:textColor="@color/white"
         />

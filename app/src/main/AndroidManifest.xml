@@ -13,13 +13,27 @@
         android:theme="@style/Theme.BuyNowV1"
         tools:targetApi="31">
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Activities.Shared.HomeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.BuyNowV1.NoActionBar" />
+        <activity
+            android:name=".Activities.User.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.Admin.AdminCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.Admin.AdminAddNewProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Shared.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Shared.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Shared.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

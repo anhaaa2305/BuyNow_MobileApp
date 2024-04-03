@@ -6,4 +6,13 @@
     </style>
 
     <style name="Theme.BuyNowV1" parent="Base.Theme.BuyNowV1" />
+
+    <style name="Theme.BuyNowV1.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.BuyNowV1.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.BuyNowV1.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

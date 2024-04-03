@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.Admin.AdminAddNewProductActivity">
+
+
+    <ImageView
+        android:id="@+id/select_product_imv"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:cropToPadding="false"
+        android:scaleType="centerCrop"
+        android:src="@drawable/select_product_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:contentDescription="@string/todo"
+        />
+
+    <EditText
+        android:id="@+id/product_name_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/select_product_imv"
+        android:layout_marginTop="25dp"
+        android:inputType="textMultiLine"
+        android:padding="20dp"
+        android:hint="@string/enter_product_name"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:background="@drawable/input_design"
+        android:autofillHints="enter product name" />
+
+    <EditText
+        android:id="@+id/product_description_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product_name_edt"
+        android:layout_marginTop="25dp"
+        android:inputType="textMultiLine"
+        android:padding="20dp"
+        android:hint="@string/enter_product_description"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:background="@drawable/input_design"
+        android:autofillHints="enter product name" />
+
+    <EditText
+        android:id="@+id/product_price_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product_description_edt"
+        android:layout_marginTop="25dp"
+        android:inputType="textMultiLine"
+        android:padding="20dp"
+        android:hint="@string/enter_product_price"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:background="@drawable/input_design"
+        android:autofillHints="enter product name" />
+
+    <Button
+        android:id="@+id/add_new_product_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product_price_edt"
+        android:text="@string/add_product"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginTop="25dp"
+        android:textSize="18sp"
+        android:padding="15dp"
+        android:backgroundTint="@color/Chocolate"
+        />
+</RelativeLayout>

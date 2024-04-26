@@ -1,18 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.BuyNowV1" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.EcommerceAppV1" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/pink</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Second brand color -->
+        <item name="colorSecondary">@color/teal</item>
+        <item name="colorSecondaryVariant">@color/Teal</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Status bae color.-->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
 
-    <style name="Theme.BuyNowV1" parent="Base.Theme.BuyNowV1" />
-
-    <style name="Theme.BuyNowV1.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme.BuyNowV1.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.BuyNowV1.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.EcommerceAppV1" parent="Base.Theme.EcommerceAppV1" />
 </resources>

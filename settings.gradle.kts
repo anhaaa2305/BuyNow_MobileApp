@@ -6,13 +6,14 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
         google()
         mavenCentral()
+        maven(uri("https://jitpack.io"))
     }
 }
 
-rootProject.name = "Buy Now v1"
+rootProject.name = "Ecommerce app v1"
 include(":app")
  

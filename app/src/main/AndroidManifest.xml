@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -10,30 +11,26 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BuyNowV1"
+        android:theme="@style/Theme.EcommerceAppV1"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.Shared.HomeActivity"
-            android:exported="false"
-            android:label="@string/title_activity_home"
-            android:theme="@style/Theme.BuyNowV1.NoActionBar" />
-        <activity
-            android:name=".Activities.User.HomeActivity"
+            android:name=".Activities.ShowAllActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.Admin.AdminCategoryActivity"
+            android:name=".Activities.DetailProductActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.Admin.AdminAddNewProductActivity"
+            android:name=".Activities.OnBoardingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.Shared.RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.Shared.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.Shared.MainActivity"
+            android:name=".Activities.MainActivity"
+            android:theme="@style/Base.Theme.EcommerceAppV1"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,6 +38,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

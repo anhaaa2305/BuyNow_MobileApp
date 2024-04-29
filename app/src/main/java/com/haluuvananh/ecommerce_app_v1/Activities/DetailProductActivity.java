@@ -1,11 +1,16 @@
 package com.haluuvananh.ecommerce_app_v1.Activities;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,7 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.haluuvananh.ecommerce_app_v1.Models.NewProductModel;
+import com.haluuvananh.ecommerce_app_v1.Models.Product.ProductModel;
 import com.haluuvananh.ecommerce_app_v1.Models.PopularProductsModel;
 import com.haluuvananh.ecommerce_app_v1.Models.ShowAllProductModel;
 import com.haluuvananh.ecommerce_app_v1.R;
@@ -36,16 +41,17 @@ public class DetailProductActivity extends AppCompatActivity {
     Button addToCart, buyNow;
     ImageView addItems, removeItems;
     // New Products
-    NewProductModel newProductModel = null;
+    ProductModel productModel = null;
     // Popular Products
     PopularProductsModel popularProductsModel = null;
     // All Products
     ShowAllProductModel allProductModel = null;
     FirebaseFirestore firestore;
     FirebaseAuth auth;
-
     int totalQuantity = 1;
     int totalPrice = 0;
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +59,16 @@ public class DetailProductActivity extends AppCompatActivity {
 
         firestore = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
+        toolbar = findViewById(R.id.product_detail_tool_bar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener( v -> {
+            finish();
+        });
         final Object obj = getIntent().getSerializableExtra("detail");
         progressDialog = new ProgressDialog(this);
-        if (obj instanceof NewProductModel) {
-            newProductModel = (NewProductModel) obj;   // Cast obj to NewProduct
+        if (obj instanceof ProductModel) {
+            productModel = (ProductModel) obj;   // Cast obj to NewProduct
         } else if (obj instanceof PopularProductsModel) {
             popularProductsModel = (PopularProductsModel) obj;
         } else if (obj instanceof ShowAllProductModel) {
@@ -64,6 +76,7 @@ public class DetailProductActivity extends AppCompatActivity {
         } else {
             return;
         }
+
         // Match Xml with Object
         detailImg = findViewById(R.id.detail_product_img);
         name = findViewById(R.id.detail_product_name);
@@ -77,16 +90,16 @@ public class DetailProductActivity extends AppCompatActivity {
         quantity = findViewById(R.id.detail_product_quantity);
 
         // NewProducts Detail
-        if (newProductModel != null) {
-            Glide.with(getApplicationContext()).load(newProductModel.getImg_url()).into(detailImg);
-            name.setText(newProductModel.getName());
-            description.setText(newProductModel.getDescription());
+        if (productModel != null) {
+            Glide.with(getApplicationContext()).load(productModel.getImg_url()).into(detailImg);
+            name.setText(productModel.getName());
+            description.setText(productModel.getDescription());
             // Format Price
             DecimalFormat formatter = new DecimalFormat("#,##0");
-            totalPrice = newProductModel.getPrice() * totalQuantity;
+            totalPrice = productModel.getPrice() * totalQuantity;
             String formattedPrice = formatter.format(totalPrice);
             price.setText(formattedPrice);
-            rating.setText(newProductModel.getRating());
+            rating.setText(productModel.getRating());
         }
 
         // PopularProducts Detail
@@ -115,45 +128,56 @@ public class DetailProductActivity extends AppCompatActivity {
             rating.setText(allProductModel.getRating());
         }
 
+        // Buy Now
+        buyNow.setOnClickListener(v -> {
+            // Progress Dialog
+            progressDialog.setTitle("Buy processing");
+            progressDialog.setMessage("Please wait...");
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.show();
+            Intent intent = new Intent(DetailProductActivity.this, AddressActivity.class);
+
+            if (productModel != null) {
+                intent.putExtra("item", productModel);
+            }
+            if (popularProductsModel != null){
+                intent.putExtra("item", popularProductsModel);
+            }
+            if (allProductModel != null) {
+                intent.putExtra("item", allProductModel);
+            }
+            startActivity(intent);
+            progressDialog.dismiss();
+        });
         // Add Product to Cart
-        addToCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Progress Dialog
-                progressDialog.setTitle("Add to Cart processing");
-                progressDialog.setMessage("Please wait...");
-                progressDialog.setCanceledOnTouchOutside(false);
-                progressDialog.show();
-
-                addToCart();
-            }
+        addToCart.setOnClickListener(v -> {
+            // Progress Dialog
+            progressDialog.setTitle("Add to Cart processing");
+            progressDialog.setMessage("Please wait...");
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.show();
+            addToCart();
         });
-        addItems.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        addItems.setOnClickListener(v -> {
 
-                if (totalQuantity < 10) {
-                    totalQuantity ++;
-                    quantity.setText(String.valueOf(totalQuantity));
-                    if (newProductModel != null) {
-                        totalPrice = newProductModel.getPrice() * totalQuantity;
-                    }
-                    if (popularProductsModel != null) {
-                        totalPrice = popularProductsModel.getPrice() * totalQuantity;
-                    }
-                    if (allProductModel != null){
-                        totalPrice = allProductModel.getPrice() * totalQuantity;
-                    }
+            if (totalQuantity < 10) {
+                totalQuantity++;
+                quantity.setText(String.valueOf(totalQuantity));
+                if (productModel != null) {
+                    totalPrice = productModel.getPrice() * totalQuantity;
+                }
+                if (popularProductsModel != null) {
+                    totalPrice = popularProductsModel.getPrice() * totalQuantity;
+                }
+                if (allProductModel != null) {
+                    totalPrice = allProductModel.getPrice() * totalQuantity;
                 }
             }
         });
-        removeItems.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (totalQuantity > 1) {
-                    totalQuantity --;
-                    quantity.setText(String.valueOf(totalQuantity));
-                }
+        removeItems.setOnClickListener(v -> {
+            if (totalQuantity > 1) {
+                totalQuantity--;
+                quantity.setText(String.valueOf(totalQuantity));
             }
         });
     }
@@ -163,12 +187,11 @@ public class DetailProductActivity extends AppCompatActivity {
         String saveCurrentDate;
         Calendar calForDate = Calendar.getInstance();
 
-        SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
         saveCurrentDate = currentDate.format(calForDate.getTime());
 
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentDate.format(calForDate.getTime());
-
         final HashMap<String, Object> _cartMap = new HashMap<>();
         _cartMap.put("productName", name.getText().toString());
         _cartMap.put("productPrice", price.getText().toString());
@@ -177,14 +200,22 @@ public class DetailProductActivity extends AppCompatActivity {
         _cartMap.put("totalQuantity", totalQuantity);
         _cartMap.put("totalPrice", totalPrice);
 
-        firestore.collection("AddToCart").document(Objects.requireNonNull(auth.getCurrentUser()).getUid()).collection("User").add(_cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
-                Toast.makeText(DetailProductActivity.this, "Add to Cart Successfully", Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
-                finish();
+        try {
+            if (auth.getCurrentUser() != null) {
+                firestore.collection("AddToCart").document(Objects.requireNonNull(auth.getCurrentUser()).getUid()).collection(Objects.requireNonNull(auth.getCurrentUser().getEmail())).add(_cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        Toast.makeText(DetailProductActivity.this, "Add to Cart Successfully", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        finish();
+                    }
+                });
             }
-        });
+        } catch (Exception e) {
+            Log.w(TAG, Objects.requireNonNull(e.getMessage()));
+            progressDialog.dismiss();
+        }
+
     }
 
 }

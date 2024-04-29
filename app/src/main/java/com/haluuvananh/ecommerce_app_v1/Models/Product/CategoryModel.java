@@ -1,14 +1,12 @@
-package com.haluuvananh.ecommerce_app_v1.Models;
+package com.haluuvananh.ecommerce_app_v1.Models.Product;
 
 public class CategoryModel {
 
-    String img_url;
-    String name;
-    String type;
-
+    private String img_url;
+    private String name;
+    private String type;
     public CategoryModel() {
     }
-
     public CategoryModel(String img_url, String name, String type) {
         this.img_url = img_url;
         this.name = name;

@@ -23,12 +23,10 @@ import java.util.Objects;
 public class RegisterActivity extends AppCompatActivity {
 
     EditText name, email, phone, address, password;
-
     // Firebase
     FirebaseAuth auth;
     SharedPreferences sharedPreferences;
     ProgressDialog loadingProgressBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,13 +42,12 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.register_edt_password);
 
         sharedPreferences = getSharedPreferences("onBoardingScreen", MODE_PRIVATE);
-        boolean isFirstTime = sharedPreferences.getBoolean("firstTime", true);
 
+        boolean isFirstTime = sharedPreferences.getBoolean("firstTime", true);
         if (isFirstTime){
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("firstTime", false);
             editor.apply();
-
             Intent intent = new Intent(RegisterActivity.this, OnBoardingActivity.class);
             startActivity(intent);
         }

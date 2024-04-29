@@ -29,12 +29,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.haluuvananh.ecommerce_app_v1.Activities.CartActivity;
 import com.haluuvananh.ecommerce_app_v1.Activities.ShowAllActivity;
 import com.haluuvananh.ecommerce_app_v1.Adapters.CategoryAdapter;
 import com.haluuvananh.ecommerce_app_v1.Adapters.NewProductsAdapter;
 import com.haluuvananh.ecommerce_app_v1.Adapters.PopolarProductsAdapter;
-import com.haluuvananh.ecommerce_app_v1.Models.CategoryModel;
-import com.haluuvananh.ecommerce_app_v1.Models.NewProductModel;
+import com.haluuvananh.ecommerce_app_v1.Models.Product.CategoryModel;
+import com.haluuvananh.ecommerce_app_v1.Models.Product.ProductModel;
 import com.haluuvananh.ecommerce_app_v1.Models.PopularProductsModel;
 import com.haluuvananh.ecommerce_app_v1.R;
 
@@ -42,8 +43,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-
-
     TextView categoryShowAll, popularShowAll, newProductShowAll;
     // Linear Layout
     LinearLayout linearLayout;
@@ -57,7 +56,7 @@ public class HomeFragment extends Fragment {
     PopolarProductsAdapter popolarProductsAdapter;
     // List Model
     List<CategoryModel> categoryModelList;
-    List<NewProductModel> newProductModelList;
+    List<ProductModel> productModelList;
     List<PopularProductsModel> popularProductsModelList;
     // Firestore
     FirebaseFirestore firestore;
@@ -81,43 +80,27 @@ public class HomeFragment extends Fragment {
         popularShowAll = root.findViewById(R.id.popular_see_all);
 
         // Click Listener with Button
-        categoryShowAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ShowAllActivity.class);
-                startActivity(intent);
-            }
+        categoryShowAll.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CartActivity.class);
+            startActivity(intent);
         });
-        newProductShowAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ShowAllActivity.class);
-                startActivity(intent);
-            }
-        });
-        popularShowAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ShowAllActivity.class);
-                startActivity(intent);
-            }
-        });
-       /* View.OnClickListener showAllClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ShowAllActivity.class);
-                startActivity(intent);
-            }
-        };
-        categoryShowAll.setOnClickListener(showAllClickListener);
-        newProductShowAll.setOnClickListener(showAllClickListener);
-        popularShowAll.setOnClickListener(showAllClickListener);*/
 
+
+        newProductShowAll.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), ShowAllActivity.class);
+                startActivity(intent);
+        });
+
+        popularShowAll.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), ShowAllActivity.class);
+                startActivity(intent);
+        });
 
         firestore = FirebaseFirestore.getInstance();
 
         linearLayout = root.findViewById(R.id.home_layout);
         linearLayout.setVisibility(View.GONE);
+
         // Image slider
         ImageSlider imageSlider = root.findViewById(R.id.image_slider);
         List<SlideModel> slideModels = new ArrayList<>();
@@ -134,6 +117,7 @@ public class HomeFragment extends Fragment {
         progressDialog.setMessage("Please wait...");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+
         // Category
         categoryRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         categoryModelList = new ArrayList<>();
@@ -161,8 +145,8 @@ public class HomeFragment extends Fragment {
 
         // New Products
         newProductRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,false ));
-        newProductModelList = new ArrayList<>();
-        newProductsAdapter = new NewProductsAdapter(getContext(), newProductModelList);
+        productModelList = new ArrayList<>();
+        newProductsAdapter = new NewProductsAdapter(getContext(), productModelList);
         newProductRecyclerView.setAdapter(newProductsAdapter);
         firestore.collection("NewProduct").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @SuppressLint("NotifyDataSetChanged")
@@ -170,8 +154,8 @@ public class HomeFragment extends Fragment {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
-                        NewProductModel newProductModel = document.toObject(NewProductModel.class);
-                        newProductModelList.add(newProductModel);
+                        ProductModel productModel = document.toObject(ProductModel.class);
+                        productModelList.add(productModel);
                         newProductsAdapter.notifyDataSetChanged();
                     }
                 } else {

@@ -2,6 +2,8 @@ package com.haluuvananh.ecommerce_app_v1.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +22,7 @@ import com.haluuvananh.ecommerce_app_v1.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ShowAllActivity extends AppCompatActivity {
 
@@ -27,7 +30,7 @@ public class ShowAllActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ShowAllAdapter showAllAdapter;
     List<ShowAllProductModel> showAllProductModelList;
-
+    Toolbar toolbar;
     ShowAllProductModel showAllProductModel = null;
     // Firebase
     FirebaseFirestore firestore;
@@ -36,10 +39,14 @@ public class ShowAllActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_all);
-
         String category = getIntent().getStringExtra("type");
         firestore = FirebaseFirestore.getInstance();
-
+        toolbar = findViewById(R.id.show_all_toolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener( v -> {
+            finish();
+        });
         recyclerView = findViewById(R.id.show_all_rec);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         showAllProductModelList = new ArrayList<>();
@@ -79,7 +86,6 @@ public class ShowAllActivity extends AppCompatActivity {
                         }
                     });
         }
-
 
     }
 }

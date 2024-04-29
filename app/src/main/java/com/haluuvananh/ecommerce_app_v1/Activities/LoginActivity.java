@@ -23,7 +23,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText email, password;
     FirebaseAuth auth;
     ProgressDialog loadingProgressBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +65,9 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
     }
-    public void signup(View view) {
 
+    public void signup(View view) {
+        startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
     }
 
 }

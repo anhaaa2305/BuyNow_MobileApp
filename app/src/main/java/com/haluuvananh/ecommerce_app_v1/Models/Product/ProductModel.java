@@ -1,24 +1,22 @@
-package com.haluuvananh.ecommerce_app_v1.Models;
-
-import com.google.type.DateTime;
+package com.haluuvananh.ecommerce_app_v1.Models.Product;
 
 import java.io.Serializable;
 
-public class NewProductModel implements Serializable {
+public class ProductModel implements Serializable {
 
-    String img_url;
-    String brand;
-    String category;
-    String color;
-    String description;
-    String name;
-    int price;
-    String rating;
+    private String img_url;
+    private String brand;
+    private String category;
+    private String color;
+    private String description;
+    private String name;
+    private int price;
+    private String rating;
 
-    public NewProductModel() {
+    public ProductModel() {
     }
 
-    public NewProductModel(String img_url, String brand, String category, String color, String description, String name, int price, String rating) {
+    public ProductModel(String img_url, String brand, String category, String color, String description, String name, int price, String rating) {
         this.img_url = img_url;
         this.brand = brand;
         this.category = category;

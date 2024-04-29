@@ -13,17 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.haluuvananh.ecommerce_app_v1.Activities.DetailProductActivity;
-import com.haluuvananh.ecommerce_app_v1.Models.NewProductModel;
+import com.haluuvananh.ecommerce_app_v1.Models.Product.ProductModel;
 import com.haluuvananh.ecommerce_app_v1.R;
 
 import java.text.DecimalFormat;
 import java.util.List;
 
 public class NewProductsAdapter extends RecyclerView.Adapter<NewProductsAdapter.ViewHolder> {
-
     Context context;
-    List<NewProductModel> list;
-    public NewProductsAdapter(Context context, List<NewProductModel> list) {
+    List<ProductModel> list;
+    public NewProductsAdapter(Context context, List<ProductModel> list) {
         this.context = context;
         this.list = list;
     }
@@ -59,7 +58,7 @@ public class NewProductsAdapter extends RecyclerView.Adapter<NewProductsAdapter.
     public int getItemCount() {
         return list.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView newImg;
         TextView newName, newPrice;

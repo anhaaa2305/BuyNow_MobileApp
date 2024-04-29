@@ -10,32 +10,33 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.google.android.material.datepicker.OnSelectionChangedListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.haluuvananh.ecommerce_app_v1.Fragments.HomeFragment;
 import com.haluuvananh.ecommerce_app_v1.R;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
+    private Fragment homeFragment;
+    private FirebaseAuth auth;
+    private Toolbar toolbar;
 
-    Fragment homeFragment;
-
-    FirebaseAuth auth;
-    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Objects.requireNonNull(getSupportActionBar()).hide();
-        //toolbar = findViewById(R.id.home_toolbar);
         auth = FirebaseAuth.getInstance();
-        //setSupportActionBar(toolbar);
-        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
+
+        toolbar = findViewById(R.id.home_toolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
+
         homeFragment = new HomeFragment();
         loadFragment(homeFragment);
     }
-
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.home_container, homeFragment);
@@ -56,11 +57,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
-        } else if (id == R.id.menu_myCart){
-
-        } else if (id == R.id.search_bar) {
-
         }
-        return super.onOptionsItemSelected(item);
+        else if (id == R.id.menu_myCart){
+            startActivity(new Intent(MainActivity.this, CartActivity.class));
+            finish();
+        }
+        return true;
     }
 }

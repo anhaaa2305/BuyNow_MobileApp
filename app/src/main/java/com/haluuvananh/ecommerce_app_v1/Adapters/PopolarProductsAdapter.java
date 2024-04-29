@@ -31,7 +31,7 @@ public class PopolarProductsAdapter extends RecyclerView.Adapter<PopolarProducts
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.popular_items, parent,false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.popular_items, parent, false));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class PopolarProductsAdapter extends RecyclerView.Adapter<PopolarProducts
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView popularImg;
         TextView popularName, popularPrice;

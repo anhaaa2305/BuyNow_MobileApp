@@ -62,4 +62,7 @@ dependencies {
 
     // Annotation
     implementation("androidx.annotation:annotation:1.7.1")
+    // circle image view
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
 }

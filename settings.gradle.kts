@@ -6,14 +6,16 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
+        jcenter()
         mavenCentral()
-        maven(uri("https://jitpack.io"))
+        maven { url = uri("https://jitpack.io") }
+        maven { isAllowInsecureProtocol = true; url = uri("http://dl.bintray.com/tosinmath007/Carteasy") }
     }
 }
 
-rootProject.name = "Ecommerce app v1"
+rootProject.name = "EcommerceAppV2"
 include(":app")
  

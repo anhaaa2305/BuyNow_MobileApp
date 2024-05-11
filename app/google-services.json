@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "933950073802",
-    "project_id": "ecommerce-app-v1-1a910",
-    "storage_bucket": "ecommerce-app-v1-1a910.appspot.com"
+    "project_number": "178622817433",
+    "project_id": "shopease-506f6",
+    "storage_bucket": "shopease-506f6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:933950073802:android:c7d72af46c35019ae1bd33",
+        "mobilesdk_app_id": "1:178622817433:android:0a85633409deb13b7c4408",
         "android_client_info": {
-          "package_name": "com.haluuvananh.ecommerce_app_v1"
+          "package_name": "com.haluuvananh.ecommerceappv2"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDhCUgLIkB_qCtNIipdS0if3_ykXMzaJz8"
+          "current_key": "AIzaSyBKoiASZZ6Av4eM8euX4IGNPV_xNsYUzkI"
         }
       ],
       "services": {

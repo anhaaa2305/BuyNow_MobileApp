@@ -1,14 +1,15 @@
 plugins {
-    id("com.android.application")
-    id("com.google.gms.google-services")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.google.gms.google.services)
+
 }
 
 android {
-    namespace = "com.haluuvananh.ecommerceappv2"
+    namespace = "com.haluuvananh.ecommerce_buynow_v3"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.haluuvananh.ecommerceappv2"
+        applicationId = "com.haluuvananh.ecommerce_buynow_v3"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -29,14 +30,16 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    packagingOptions {
+
+   packagingOptions {
         merge ("META-INF/NOTICE.md")
         merge ("META-INF/LICENSE.md")
     }
 }
 
 dependencies {
-    implementation("androidx.appcompat:appcompat:1.6.1")
+
+    implementation(libs.appcompat)
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
@@ -71,7 +74,7 @@ dependencies {
     implementation("com.sun.mail:android-mail:1.6.7")
     implementation("com.sun.mail:android-activation:1.6.7")
     //Firebase Dynamic Link
-    implementation ("com.google.firebase:firebase-dynamic-links:22.0.0")
+    implementation ("com.google.firebase:firebase-dynamic-links:21.2.0")
     implementation ("com.google.firebase:firebase-core:21.1.1")
     //Shimmer Effect
     implementation ("com.facebook.shimmer:shimmer:0.5.0")

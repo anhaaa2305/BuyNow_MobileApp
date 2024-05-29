@@ -6,29 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundPrimary"
     tools:context=".fragments.HomeFragment">
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/linearLayout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@color/my_primary"-->
-<!--        android:orientation="vertical"-->
-<!--        android:padding="10dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
-
-<!--        <com.mancj.materialsearchbar.MaterialSearchBar-->
-<!--            android:id="@+id/searchBar"-->
-<!--            style="@style/MaterialSearchBarLight"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:mt_hint="Search..."-->
-<!--            app:mt_placeholder="Amazon"-->
-<!--            app:mt_navIconEnabled="true"-->
-<!--            app:mt_maxSuggestionsCount="10" />-->
-<!--    </LinearLayout>-->
-
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmerLayout"
         android:layout_width="match_parent"
